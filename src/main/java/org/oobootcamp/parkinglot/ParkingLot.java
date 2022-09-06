@@ -1,20 +1,31 @@
 package org.oobootcamp.parkinglot;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParkingLot {
     int maxCapacity;
-    String[] parkingCars = {};
+    List<Car> parkingCars = new ArrayList();
 
     ParkingLot(int capacity) {
         maxCapacity = capacity;
     }
 
-    public String put(Car car) {
-        boolean isParking = Arrays.asList(parkingCars).contains(car.id);
-        if (maxCapacity > 0 && !isParking) {
-            return "Your car has been parked!";
+    public Ticket park(Car car) {
+//        boolean isParking = parkingCars.contains(car);
+        if (maxCapacity > 0) {
+            parkingCars.add(car);
+            Ticket ticket = new Ticket(car);
+            return ticket;
         }
-        return "The car has already been parked";
+        return null;
+    }
+
+    public Car unpark(Ticket ticket) {
+        if (parkingCars.contains(ticket.parkingCar)) {
+            parkingCars.remove(ticket.parkingCar);
+            return ticket.parkingCar;
+        }
+        return null;
     }
 }
