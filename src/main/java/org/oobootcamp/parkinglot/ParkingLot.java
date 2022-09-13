@@ -13,7 +13,7 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
 //        boolean isParking = parkingCars.contains(car);
-        if (maxCapacity > 0) {
+        if (maxCapacity - parkingCars.size() > 0) {
             parkingCars.add(car);
             Ticket ticket = new Ticket(car);
             return ticket;
